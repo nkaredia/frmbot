@@ -1,0 +1,36 @@
+{
+    "manifest_version": 2,
+    "name": "Form Bot",
+    "description": "Read webform and store it for later use.",
+    "version": "0.0.1",
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "lib/es6-module-loader.js",
+                "lib/system.js",
+                "lib/jquery/dist/jquery.min.js",
+                "js/content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "background": {
+        "scripts" : ["js/background.js"]
+    },
+    "permissions": [
+        "unlimitedStorage",
+        "background",
+        "storage",
+        "activeTab",
+        "http://*/*",
+        "https://*/*",
+        "debugger"
+    ],
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
+}
