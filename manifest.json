@@ -9,9 +9,6 @@
                 "<all_urls>"
             ],
             "js": [
-                "lib/es6-module-loader.js",
-                "lib/system.js",
-                "lib/jquery/dist/jquery.min.js",
                 "js/content.js"
             ],
             "run_at": "document_end"

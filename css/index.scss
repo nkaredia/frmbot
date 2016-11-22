@@ -1,0 +1,40 @@
+body {
+  width: 350px;
+  padding: 0;
+  margin: 0;
+  md-content {
+    .md-button.fill-button {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .read-container {
+      max-height: 50px;
+      input {
+      }
+      .md-button {
+
+      }
+    }
+    .save-button {
+      max-height: 36px;
+      top: 10px;
+      min-width: 36px;
+      line-height: 1;
+      font-size: 10px;
+      md-icon {
+        display: block;
+      }
+    }
+  }
+  .flex {
+    display: flex;
+  }
+  .fvc {
+    align-items: center;
+  }
+  .fhc {
+    justify-content: center;
+  }
+}

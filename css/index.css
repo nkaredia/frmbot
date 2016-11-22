@@ -1,0 +1,25 @@
+body {
+  width: 350px;
+  padding: 0;
+  margin: 0; }
+  body md-content .md-button.fill-button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%); }
+  body md-content .read-container {
+    max-height: 50px; }
+  body md-content .save-button {
+    max-height: 36px;
+    top: 10px;
+    min-width: 36px;
+    line-height: 1;
+    font-size: 10px; }
+    body md-content .save-button md-icon {
+      display: block; }
+  body .flex {
+    display: flex; }
+  body .fvc {
+    align-items: center; }
+  body .fhc {
+    justify-content: center; }
