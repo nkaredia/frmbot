@@ -11,11 +11,8 @@ body {
     }
     .read-container {
       max-height: 50px;
-      input {
-      }
-      .md-button {
-
-      }
+      input {}
+      .md-button {}
     }
     .save-button {
       max-height: 36px;
@@ -25,6 +22,18 @@ body {
       font-size: 10px;
       md-icon {
         display: block;
+      }
+    }
+    md-whiteframe {
+      background-color: rgb(40, 53, 147);
+      height: 36px;
+      justify-content: space-between !important;
+      padding: 0px 10px;
+      border-radius: 3px;
+      * {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        font-weight: 600;
       }
     }
   }

@@ -2,8 +2,9 @@ var formbotApp;
 (function (formbotApp) {
     'use strict';
     var Popup = (function () {
-        function Popup() {
+        function Popup($timeout) {
             var _this = this;
+            this.$timeout = $timeout;
             this.searchTextChange = function (searchText) {
             };
             this.selectedItemChange = function (item) {
@@ -14,6 +15,8 @@ var formbotApp;
                 return results;
             };
             this.data = ['hello', 'world', 'nk', 'noorsil', 'karedia'];
+            this.isDisable = true;
+            $timeout(function () { _this.isDisable = false; }, 1000);
         }
         Popup.prototype.createFilterFor = function (query) {
             var lowercaseQuery = angular.lowercase(query);
@@ -21,7 +24,9 @@ var formbotApp;
                 return (data.indexOf(lowercaseQuery) === 0);
             };
         };
-        Popup.$inject = [];
+        Popup.$inject = [
+            '$timeout'
+        ];
         return Popup;
     }());
     formbotApp.Popup = Popup;

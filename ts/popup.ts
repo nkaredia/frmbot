@@ -2,16 +2,19 @@ module formbotApp {
   'use strict';
   export class Popup {
     static $inject: Array<string> = [
+      '$timeout'
     ];
 
     selectedItem: string;
     searchText: string;
     private data: Array<string>;
+    isDisable: boolean;
 
 
-    constructor() {
+    constructor(private $timeout: ng.ITimeoutService) {
       this.data = ['hello', 'world', 'nk', 'noorsil', 'karedia'];
-
+      this.isDisable = true;
+      $timeout(() => { this.isDisable = false }, 1000);
     }
 
     searchTextChange = (searchText: string): void => {
@@ -35,11 +38,6 @@ module formbotApp {
       };
 
     }
-
-
-
-
-
   }
   angular.module('formbotApp').controller('Popup', Popup);
 }
