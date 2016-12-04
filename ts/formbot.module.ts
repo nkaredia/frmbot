@@ -1,1 +1,1 @@
-angular.module('formbotApp', ['ngMaterial']);
+angular.module('formbotApp', ['ngMaterial', 'ngAnimate']);

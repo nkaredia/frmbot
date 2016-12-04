@@ -11,16 +11,16 @@ var formbotApp;
                 _this.selectedItem = item;
             };
             this.querySearch = function (searchText) {
-                var results = searchText ? _this.data.filter(_this.createFilterFor(searchText)) : _this.data;
+                var results = searchText ? _this.data.filter(_this.createFilterFor) : _this.data;
                 return results;
             };
-            this.data = ['hello', 'world', 'nk', 'noorsil', 'karedia'];
+            this.data = [{ name: 'hello', formData: '' }, { name: 'world', formData: '' }, { name: 'nk', formData: '' }, { name: 'erferf', formData: '' }, { name: 'kared', formData: '' }];
             this.isDisable = true;
             $timeout(function () { _this.isDisable = false; }, 1000);
         }
-        Popup.prototype.createFilterFor = function (query) {
-            var lowercaseQuery = angular.lowercase(query);
-            return function filterFn(data) {
+        Popup.prototype.createFilterFor = function (value, index, array) {
+            var lowercaseQuery = angular.lowercase(value.name);
+            return function (data) {
                 return (data.indexOf(lowercaseQuery) === 0);
             };
         };

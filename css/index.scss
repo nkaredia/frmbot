@@ -1,13 +1,31 @@
-body {
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #999;
+}
+body,
+html {
   width: 350px;
   padding: 0;
   margin: 0;
+  min-height: auto !important;
+  height: 370px !important;
+  .md-toolbar-tools {
+    * {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0px;
+    }
+  }
   md-content {
     .md-button.fill-button {
       margin-top: 20px;
       margin-bottom: 20px;
       margin-left: 50%;
       transform: translateX(-50%);
+      background-color: rgb(40, 53, 147) !important;
     }
     .read-container {
       max-height: 50px;
@@ -22,7 +40,14 @@ body {
       font-size: 10px;
       md-icon {
         display: block;
+        color: rgb(40, 53, 147) !important;
       }
+      span {
+        color: rgb(40, 53, 147) !important;
+      }
+    }
+    .read-button {
+      background-color: rgb(40, 53, 147) !important;
     }
     md-whiteframe {
       background-color: rgb(40, 53, 147);
@@ -35,6 +60,37 @@ body {
         font-size: 14px;
         font-weight: 600;
       }
+      .extend-button-container {
+        .extend-button {
+          min-height: 26px;
+          margin: 0;
+          padding: 0;
+          min-width: 26px;
+          border-radius: 100%;
+          .md-ripple-container {
+            border-radius: 100% !important;
+          }
+        }
+      }
+    }
+    .preview-window {
+      margin: 0;
+      height: 100px;
+    }
+    .preview-window.ng-enter {
+      transition: 0.5s linear all;
+      height: 0px;
+    }
+    /* The finishing CSS styles for the enter animation */
+    .preview-window.ng-enter.ng-enter-active {
+      height: 100px;
+    }
+    .preview-window.ng-leave {
+      transition: 0.5s linear all;
+      height: 100px;
+    }
+    .preview-window.ng-leave.ng-leave-active {
+      height: 0px;
     }
   }
   .flex {

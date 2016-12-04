@@ -5,14 +5,14 @@ module formbotApp {
       '$timeout'
     ];
 
-    selectedItem: string;
+    selectedItem: IData;
     searchText: string;
-    private data: Array<string>;
+    private data: Array<IData>;
     isDisable: boolean;
 
 
     constructor(private $timeout: ng.ITimeoutService) {
-      this.data = ['hello', 'world', 'nk', 'noorsil', 'karedia'];
+      this.data = [{ name: 'hello', formData: '' }, { name: 'world', formData: '' }, { name: 'nk', formData: '' }, { name: 'erferf', formData: '' }, { name: 'kared', formData: '' }];
       this.isDisable = true;
       $timeout(() => { this.isDisable = false }, 1000);
     }
@@ -21,22 +21,20 @@ module formbotApp {
 
     }
 
-    selectedItemChange = (item: string): void => {
+    selectedItemChange = (item: IData): void => {
       this.selectedItem = item;
     }
 
-    querySearch = (searchText: string): Array<string> => {
-      let results = searchText ? this.data.filter(this.createFilterFor(searchText)) : this.data;
+    querySearch = (searchText: string): Array<IData> => {
+      let results = searchText ? this.data.filter(this.createFilterFor) : this.data;
       return results;
     }
 
-    createFilterFor(query: string) {
-      var lowercaseQuery = angular.lowercase(query);
-
-      return function filterFn(data: string) {
+    createFilterFor(value: IData, index: number, array: Array<IData>) {
+      let lowercaseQuery = angular.lowercase(value.name);
+      return (data: string) => {
         return (data.indexOf(lowercaseQuery) === 0);
-      };
-
+      }
     }
   }
   angular.module('formbotApp').controller('Popup', Popup);

@@ -1,2 +1,2 @@
-angular.module('formbotApp', ['ngMaterial']);
+angular.module('formbotApp', ['ngMaterial', 'ngAnimate']);
 //# sourceMappingURL=formbot.module.js.map
