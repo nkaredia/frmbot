@@ -36,7 +36,7 @@
       <form ng-submit="$event.preventDefault()">
         <div class="flex">
           <md-input-container class="read-container" flex="100">
-            <label>Client Name</label>
+            <label>Name your form</label>
             <input required name="clientName" ng-model="project.clientName">
             <div ng-messages="projectForm.clientName.$error">
               <div ng-message="required">This is required.</div>
@@ -60,7 +60,10 @@
         </div>
       </md-whiteframe>
       <md-card md-theme="default" class="preview-window" ng-if="ctrl.openPreviewWindow" md-theme-watch>
-
+        <div class="flex" ng-repeat="item in ctrl.previewContent">
+          <div class="input-name">{{item.inputName}}</div>
+          <div class="input-value">{{item.inputValue}}</div>
+        </div>
       </md-card>
     </md-content>
   </div>

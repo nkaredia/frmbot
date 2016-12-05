@@ -76,6 +76,24 @@ html {
     .preview-window {
       margin: 0;
       height: 100px;
+      padding: 5px 0px;
+      overflow: auto;
+      >div {
+        padding: 0px 10px;
+        max-height: 23px;
+        min-height: 23px;
+        .input-name {
+          width: 25%;
+        }
+        .input-value {
+          width: 75%;
+        }
+        .input-name, .input-value {
+          font-size: 14px;
+          font-weight: 500;
+          color: #222;
+        }
+      }
     }
     .preview-window.ng-enter {
       transition: 0.5s linear all;

@@ -1,3 +1,6 @@
 node_modules
 .vscode
 npm-debug.log
+css/index.css
+css/index.css.map
+js
