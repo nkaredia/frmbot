@@ -9,13 +9,14 @@
                 "<all_urls>"
             ],
             "js": [
+                "js/commonTypes.js",
                 "js/content.js"
             ],
             "run_at": "document_end"
         }
     ],
     "background": {
-        "scripts" : ["js/background.js"]
+        "scripts" : ["js/commonTypes.js","js/background.js"]
     },
     "permissions": [
         "unlimitedStorage",

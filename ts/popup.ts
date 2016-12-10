@@ -37,20 +37,24 @@ module formbotApp {
     }
 
     onMessage = (message: IMessage): void => {
-      if(message.type == MessageType.READ) {
+      if(message.type == Types.MessageType.READ) {
         this.previewContent = message.previewData;
       }
     }
 
     read = (): void => {
-      this.port.postMessage({type: MessageType.READ});
+      this.port.postMessage({type: Types.MessageType.READ});
     }
 
     save = (name: string, formData: string): void => {
       let newData: IData = { name: name, formData: formData };
-      this.port.postMessage({type: MessageType.SAVE, data: newData});
+      this.port.postMessage({type: Types.MessageType.SAVE, data: newData});
       //this.data.push(newData);
       //chrome.storage.sync.set({data: this.data});
+    }
+
+    readForm = () => {
+      this.read();
     }
 
     createFilterFor(value: IData, index: number, array: Array<IData>) {

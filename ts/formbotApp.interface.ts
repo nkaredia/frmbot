@@ -4,16 +4,12 @@ module formbotApp {
     formData: string;
   }
 
-  export class MessageType {
-    static READ = 'read';
-    static FILL = 'fill';
-    static SAVE = 'save';
-  }
-
   export interface IMessage {
-    type: MessageType;
+    type: Types.MessageType;
     data?: IData;
     previewData?: Array<IPreviewContent>;
+    success?: boolean;
+    formData?: Array<string>;
   }
 
   export interface IPort extends chrome.runtime.Port {
