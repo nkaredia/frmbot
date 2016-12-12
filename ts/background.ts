@@ -18,9 +18,9 @@ module formbotApp {
       this.previewData = [];
       this.port = null;
       chrome.runtime.onConnect.addListener(this.connect);
-      chrome.storage.sync.get((data: Array<IData>) => {
-        this.data = data;
-      });
+      // chrome.storage.sync.get((data: Array<IData>) => {
+      //   this.data = data;
+      // });
     }
 
     private connect = (port: IPort): void => {
@@ -42,6 +42,17 @@ module formbotApp {
     private onMessageCallback = (message: IMessage): void => {
       if (message.type === Types.MessageType.READ) {
         chrome.tabs.query({ active: true, currentWindow: true }, this.tabsQueryCallback);
+      } else if (message.type === Types.MessageType.SAVE) {
+        try {
+          chrome.storage.sync.get((items: { data: Array<IData> }) => {
+            items.data = items.data && items.data.length ? items.data : [];
+            items.data.push({ name: message.data.name, formData: message.data.formData });
+            chrome.storage.sync.set({ data: items.data });
+            this.port.postMessage({ type: Types.MessageType.SAVE, success: true });
+          });
+        } catch (e) {
+          this.port.postMessage({ type: Types.MessageType.SAVE, success: false });
+        }
       }
     }
 
@@ -67,14 +78,16 @@ module formbotApp {
     private decodeFormString = (input: string) => {
       let parser = new DOMParser();
       let dom = parser.parseFromString(input, 'text/html');
-      this.priority.forEach((type: string) => {
-        [].forEach.call(dom.body.childNodes, (element: HTMLInputElement, index: number) => {
-          if (element.hasAttribute(type)) {
-            if(element.type === 'checkbox' || element.type === 'radio') {
+      [].forEach.call(dom.body.childNodes, (element: HTMLInputElement, index: number) => {
+        this.priority.forEach((type: string) => {
+          let gotType: boolean = false;
+          if (element.hasAttribute(type) && !gotType) {
+            if (element.type === 'checkbox' || element.type === 'radio') {
               this.previewData.push({ inputName: element.attributes[type].value, inputValue: element.attributes['checked'] });
-            } else {  
+            } else {
               this.previewData.push({ inputName: element.attributes[type].value, inputValue: element.attributes['value'].value });
             }
+            gotType = true;
           }
         });
       });

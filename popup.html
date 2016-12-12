@@ -22,8 +22,23 @@
         <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText"
           md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.data" md-item-text="item.name" md-min-length="0"
           ng-disabled="ctrl.isDisable" placeholder="Search/Select">
-          <md-item-template>
-            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.name}}</span>
+          <md-item-template class="flex">
+            <span class="flex select-item-list">
+              <div class="item-name">{{item.name}}</div>
+              <div class="flex fvc items-actions">
+                <!--<div class="i-action flex fvc">
+                  <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_delete_24px.svg"></md-icon>
+                </div>-->
+                <md-button class="md-primary i-action flex fhc fvc" ng-click="ctrl.deleteItem($event)">
+                  <md-tooltip md-direction="top">Preview</md-tooltip>
+                  <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_visibility_24px.svg"></md-icon>          
+                </md-button>
+                <md-button class="md-primary i-action flex fhc fvc" ng-click="ctrl.deleteItem($event)">
+                  <md-tooltip md-direction="top">Delete</md-tooltip>
+                  <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_delete_24px.svg"></md-icon>          
+                </md-button>
+              </div>
+            </span>
           </md-item-template>
           <md-not-found>
             No states matching "{{ctrl.searchText}}" were found.
@@ -33,16 +48,13 @@
         <md-button class="md-raised md-primary fill-button">Fill</md-button>
         <md-divider></md-divider>
       </form>
-      <form ng-submit="$event.preventDefault()">
+      <form ng-submit="$event.preventDefault()" name="saveForm">
         <div class="flex">
           <md-input-container class="read-container" flex="100">
             <label>Name your form</label>
-            <input required name="clientName" ng-model="project.clientName">
-            <div ng-messages="projectForm.clientName.$error">
-              <div ng-message="required">This is required.</div>
-            </div>
+            <input required name="clientName" id="clientName" ng-model="ctrl.clientName">
           </md-input-container>
-          <md-button class="md-primary save-button">
+          <md-button class="md-primary save-button" ng-click="ctrl.save()">
             <md-icon md-svg-icon="node_modules/material-design-icons/content/svg/production/ic_save_24px.svg"></md-icon>
             Save
           </md-button>
@@ -59,12 +71,12 @@
           </md-button>
         </div>
       </md-whiteframe>
-      <md-card md-theme="default" class="preview-window" ng-if="ctrl.openPreviewWindow" md-theme-watch>
-        <div class="flex" ng-repeat="item in ctrl.previewContent">
-          <div class="input-name">{{item.inputName}}</div>
-          <div class="input-value">{{item.inputValue}}</div>
+      <div class="preview-window" id="console" ng-if="ctrl.openPreviewWindow">
+        <div class="item flex" ng-repeat="item in ctrl.previewContent">
+          <div class="i-name">{{item.inputName}}</div>
+          <div class="i-value">{{item.inputValue}}</div>
         </div>
-      </md-card>
+      </div>
     </md-content>
   </div>
   <script src="node_modules/angular/angular.min.js"></script>
