@@ -18,9 +18,8 @@ module formbotApp {
       this.previewData = [];
       this.port = null;
       chrome.runtime.onConnect.addListener(this.connect);
-      // chrome.storage.sync.get((data: Array<IData>) => {
-      //   this.data = data;
-      // });
+      this.getUpdatedSyncData();
+      
     }
 
     private connect = (port: IPort): void => {
@@ -53,7 +52,31 @@ module formbotApp {
         } catch (e) {
           this.port.postMessage({ type: Types.MessageType.SAVE, success: false });
         }
+      } else if (message.type === Types.MessageType.UPDATE) {
+        this.getUpdatedSyncData();
+      } else if (message.type === Types.MessageType.PREVIEW) {
+        this.previewData = [];
+        [].forEach.call(message.formData, (value: string, index: number) => {
+          this.decodeFormString(value);
+        });
+        if (this.previewData) {
+          this.port.postMessage({ type: Types.MessageType.PREVIEW, success: true, previewData: this.previewData });
+        }
       }
+    }
+
+    private getUpdatedSyncData = () => {
+      chrome.storage.sync.get((items: { data: Array<IData> }) => {
+        this.data = items.data && items.data.length ? items.data : [];
+      });
+    }
+
+    private updateSyncData = (newData: Array<IData>) => {
+      chrome.storage.sync.set({ data: newData });
+    }
+
+    private getData = (): Array<IData> => {
+      return this.data;
     }
 
     private tabsQueryCallback = (tabs: chrome.tabs.Tab[]) => {

@@ -20,8 +20,8 @@
     <md-content class="md-padding">
       <form ng-submit="$event.preventDefault()">
         <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText"
-          md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.data" md-item-text="item.name" md-min-length="0"
-          ng-disabled="ctrl.isDisable" placeholder="Search/Select">
+          md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.getData()" md-item-text="item.name" md-min-length="0"
+          ng-disabled="ctrl.isSelectDisable" placeholder="Search/Select">
           <md-item-template class="flex">
             <span class="flex select-item-list">
               <div class="item-name">{{item.name}}</div>
@@ -29,11 +29,11 @@
                 <!--<div class="i-action flex fvc">
                   <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_delete_24px.svg"></md-icon>
                 </div>-->
-                <md-button class="md-primary i-action flex fhc fvc" ng-click="ctrl.deleteItem($event)">
+                <md-button class="md-primary i-action flex fhc fvc" ng-click="ctrl.previewItem($event, $index)">
                   <md-tooltip md-direction="top">Preview</md-tooltip>
                   <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_visibility_24px.svg"></md-icon>          
                 </md-button>
-                <md-button class="md-primary i-action flex fhc fvc" ng-click="ctrl.deleteItem($event)">
+                <md-button class="md-primary i-action flex fhc fvc" ng-click="ctrl.deleteItem($event, $index)">
                   <md-tooltip md-direction="top">Delete</md-tooltip>
                   <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_delete_24px.svg"></md-icon>          
                 </md-button>
@@ -41,8 +41,7 @@
             </span>
           </md-item-template>
           <md-not-found>
-            No states matching "{{ctrl.searchText}}" were found.
-            <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            "{{ctrl.searchText}}" not found
           </md-not-found>
         </md-autocomplete>
         <md-button class="md-raised md-primary fill-button">Fill</md-button>
