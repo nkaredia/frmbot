@@ -16,6 +16,7 @@ module formbotApp {
     clientName: string;
     saveForm: angular.IFormController;
     isSelectDisable: boolean;
+    clientNameInput: ng.IFormController;
 
     constructor(private $timeout: ng.ITimeoutService, private $mdToast: ng.material.IToastService) {
       this.getUpdatedSyncData();
@@ -104,8 +105,10 @@ module formbotApp {
     }
 
     save = (e: Event): void => {
-      if (this.clientName != null || this.clientName != '') {
+      if ((this.clientName.trim().length > 0 && this.formData.length > 0)) {
         this.port.postMessage({ type: Types.MessageType.SAVE, data: { name: this.clientName, formData: this.formData } });
+      } else {
+        
       }
     }
 

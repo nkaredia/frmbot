@@ -106,7 +106,7 @@ module formbotApp {
           let gotType: boolean = false;
           if (element.hasAttribute(type) && !gotType) {
             if (element.type === 'checkbox' || element.type === 'radio') {
-              this.previewData.push({ inputName: element.attributes[type].value, inputValue: element.attributes['checked'] });
+              this.previewData.push({ inputName: element.attributes[type].value, inputValue: element.attributes['checked'].value });
             } else {
               this.previewData.push({ inputName: element.attributes[type].value, inputValue: element.attributes['value'].value });
             }

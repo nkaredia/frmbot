@@ -21,14 +21,11 @@
       <form ng-submit="$event.preventDefault()">
         <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText"
           md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.getData()" md-item-text="item.name" md-min-length="0"
-          ng-disabled="ctrl.isSelectDisable" placeholder="Search/Select">
+          md-no-cache="true" ng-disabled="ctrl.isSelectDisable" placeholder="Search/Select">
           <md-item-template class="flex">
             <span class="flex select-item-list">
               <div class="item-name">{{item.name}}</div>
               <div class="flex fvc items-actions">
-                <!--<div class="i-action flex fvc">
-                  <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_delete_24px.svg"></md-icon>
-                </div>-->
                 <md-button class="md-primary i-action flex fhc fvc" ng-click="ctrl.previewItem($event, $index)">
                   <md-tooltip md-direction="top">Preview</md-tooltip>
                   <md-icon md-svg-icon="node_modules/material-design-icons/action/svg/production/ic_visibility_24px.svg"></md-icon>          
