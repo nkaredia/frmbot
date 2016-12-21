@@ -9,14 +9,14 @@ module formbotApp {
     selectedItem: IData;
     searchText: string;
     port: IPort;
-    private data: Array<IData>;
-    private previewContent: Array<IPreviewContent>;
     openPreviewWindow: boolean;
     formData: Array<string>;
     clientName: string;
     saveForm: angular.IFormController;
     isSelectDisable: boolean;
     clientNameInput: ng.IFormController;
+    private data: Array<IData>;
+    private previewContent: Array<IPreviewContent>;
 
     constructor(private $timeout: ng.ITimeoutService, private $mdToast: ng.material.IToastService) {
       this.getUpdatedSyncData();
@@ -108,7 +108,7 @@ module formbotApp {
       if ((this.clientName.trim().length > 0 && this.formData.length > 0)) {
         this.port.postMessage({ type: Types.MessageType.SAVE, data: { name: this.clientName, formData: this.formData } });
       } else {
-        
+
       }
     }
 

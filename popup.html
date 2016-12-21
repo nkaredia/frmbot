@@ -41,16 +41,16 @@
             "{{ctrl.searchText}}" not found
           </md-not-found>
         </md-autocomplete>
-        <md-button class="md-raised md-primary fill-button">Fill</md-button>
+        <md-button class="md-raised md-primary fill-button" ng-disabled="ctrl.isSelectDisable">Fill</md-button>
         <md-divider></md-divider>
       </form>
       <form ng-submit="$event.preventDefault()" name="saveForm">
         <div class="flex">
           <md-input-container class="read-container" flex="100">
             <label>Name your form</label>
-            <input required name="clientName" id="clientName" ng-model="ctrl.clientName">
+            <input required name="clientName" id="clientName" ng-model="ctrl.clientName" ng-disabled="ctrl.formData.length === 0">
           </md-input-container>
-          <md-button class="md-primary save-button" ng-click="ctrl.save()">
+          <md-button class="md-primary save-button" ng-click="ctrl.save()" ng-disabled="ctrl.formData.length === 0">
             <md-icon md-svg-icon="node_modules/material-design-icons/content/svg/production/ic_save_24px.svg"></md-icon>
             Save
           </md-button>

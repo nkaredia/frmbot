@@ -160,4 +160,12 @@ html {
   .fhc {
     justify-content: center;
   }
+
+  .md-button[disabled], .md-button.md-raised[disabled] {
+    color: #777 !important;
+  }
+
+  .md-button[disabled].fill-button {
+    background-color: #b0b0b0 !important;
+  }
 }
