@@ -117,13 +117,13 @@ module formbotApp {
     }
 
     getUpdatedSyncData = () => {
-      chrome.storage.sync.get((items: { data: Array<IData> }) => {
+      chrome.storage.local.get((items: { data: Array<IData> }) => {
         this.data = items.data && items.data.length ? items.data : [];
       });
     }
 
     updateSyncData = (newData: Array<IData>) => {
-      chrome.storage.sync.set({ data: newData });
+      chrome.storage.local.set({ data: newData });
     }
 
     createFilterFor(value: IData, index: number, array: Array<IData>) {
